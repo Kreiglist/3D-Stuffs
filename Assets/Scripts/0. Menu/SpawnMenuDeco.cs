@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnMenuDeco : MonoBehaviour
@@ -16,14 +15,14 @@ public class SpawnMenuDeco : MonoBehaviour
     private void CubeRandomizer()
     {
         // Random Location
-        float randomLocations = Random.Range(-1f, 1f);
+        float randomLocations = Random.Range(-5f, 5f);
         Vector3 randomPosition = new Vector3(randomLocations, 0, randomLocations);
         // Random Rotation
-        int randomRotation = Random.Range(0, 360);
-        Quaternion randomQuaternion = Quaternion.Euler(randomRotation, randomRotation, randomRotation);
+        int randomRotationX = Random.Range(0, 360); int randomRotationY = Random.Range(0, 360); int randomRotationZ = Random.Range(0, 360);
+        Quaternion randomQuaternion = Quaternion.Euler(randomRotationX, randomRotationY, randomRotationZ);
         // Random Scale
-        float randomSize = Random.Range(0.5f, 2f);
-        Vector3 randomScale = new Vector3(randomSize, randomSize, randomSize);
+        float randomSizeX = Random.Range(0.5f, 2f); float randomSizeY = Random.Range(0.5f, 2f); float randomSizeZ = Random.Range(0.5f, 2f);
+        Vector3 randomScale = new Vector3(randomSizeX, randomSizeY, randomSizeZ);
         // Random Color
         float randomR = Random.Range(0f, 1f); float randomG = Random.Range(0f, 1f); float randomB = Random.Range(0f, 1f);
 
@@ -35,8 +34,8 @@ public class SpawnMenuDeco : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(interval);
             CubeRandomizer();
+            yield return new WaitForSeconds(interval);
         }
     }
 }
