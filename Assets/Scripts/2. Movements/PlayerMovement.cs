@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;              // Final direction to apply force to
 
     Rigidbody rb;                       // Rigidbody component for physics movement
+    [SerializeField] private Text speedometer;
 
     private void Start()
     {
@@ -45,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
         // Apply drag when grounded to slow down
         if (grounded) rb.linearDamping = groundDrag;
         else rb.linearDamping = 0;
+
+        speedometer.text = "Speed: " + rb.linearVelocity.magnitude;
     }
 
     private void FixedUpdate()

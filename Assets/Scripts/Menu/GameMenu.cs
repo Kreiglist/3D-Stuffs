@@ -18,7 +18,7 @@ public class GameMenu : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Escape) && isActive == false)
         {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             pauseScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -26,7 +26,7 @@ public class GameMenu : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.Escape) && isActive)
         {
-            Time.timeScale = 1;
+            //Time.timeScale = 1;
             pauseScreen.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
