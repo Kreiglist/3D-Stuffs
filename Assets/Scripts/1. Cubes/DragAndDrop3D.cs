@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DragAndDrop3D : MonoBehaviour
 {
+    [SerializeField] private AudioClip[] pickupSFX;
     // Store the offset between the mouse position and the object's position
     Vector3 mousePosition;
 
@@ -16,6 +15,7 @@ public class DragAndDrop3D : MonoBehaviour
     {
         // Calculate the offset between the mouse position and the object's position
         mousePosition = Input.mousePosition - GetMousePos();
+        AudioManager.audioManager.PlayAudioRandom(pickupSFX, transform, 1f);
     }
 
     private void OnMouseDrag() // Called every frame while the user is dragging the object with the mouse

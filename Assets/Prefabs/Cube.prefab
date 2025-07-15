@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4139686554853407174}
   - component: {fileID: 102612832099382286}
   - component: {fileID: 2236971595649694398}
-  - component: {fileID: 1599238644054420382}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -62,6 +61,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -115,10 +117,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5577544284771608194}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -147,16 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ced530184bd6a84ebe191437b0ea4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1599238644054420382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5577544284771608194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6bc2118a1f94b044aca9c5bae4639e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clickSound: {fileID: 8300000, guid: 7bf501a2407600f40bd23e690a88b329, type: 3}
+  pickupSFX:
+  - {fileID: 8300000, guid: 1d66eb3fa2bedf9409f536bfe158573a, type: 3}
+  - {fileID: 8300000, guid: 57f95c7630c3c8d4b8fecda25d135862, type: 3}
+  - {fileID: 8300000, guid: 90ffc4f9eb7438d4ca70680bf929d18c, type: 3}
