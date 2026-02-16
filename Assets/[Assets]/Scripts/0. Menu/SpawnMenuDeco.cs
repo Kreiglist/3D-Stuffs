@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SpawnMenuDeco : MonoBehaviour
 {
-    [SerializeField] GameObject decoPrefab;
+    [SerializeField] GameObject[] decoPrefabs;
     [SerializeField] private float spawnInterval;
 
     private GameObject decoInstance;
@@ -14,6 +14,7 @@ public class SpawnMenuDeco : MonoBehaviour
 
     private void CubeRandomizer()
     {
+        int rand = Random.Range(0, decoPrefabs.Length);
         // Random Location
         float randomLocations = Random.Range(-5f, 5f);
         Vector3 randomPosition = new Vector3(randomLocations, 0, randomLocations);
@@ -26,7 +27,7 @@ public class SpawnMenuDeco : MonoBehaviour
         // Random Color
         float randomR = Random.Range(0f, 1f); float randomG = Random.Range(0f, 1f); float randomB = Random.Range(0f, 1f);
 
-        decoInstance = Instantiate(decoPrefab, transform.position + randomPosition, randomQuaternion);
+        decoInstance = Instantiate(decoPrefabs[rand], transform.position + randomPosition, randomQuaternion);
         decoInstance.transform.localScale = randomScale;
         decoInstance.GetComponent<MeshRenderer>().material.color = new Color(randomR, randomG, randomB, 1f);
     }

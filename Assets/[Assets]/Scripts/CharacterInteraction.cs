@@ -1,30 +1,18 @@
+// Peeps 2 thank
+// Rytech
+// Mr Bluecap
 using UnityEngine;
-using UnityEngine.InputSystem;
-
 public class CharacterInteraction : MonoBehaviour
 {
     [SerializeField] Camera playerCamera;
-    [SerializeField] private InputActionAsset playerControls;
     [SerializeField] private float interactionDistance;
 
-    private CharacterController characterController;
-    private InputAction interactionAction;
-
+    //private CharacterController characterController;
     IInteractable interactableTarget;
     private void Awake()
     {
-        characterController = GetComponent<CharacterController>();
+        //characterController = GetComponent<CharacterController>();
         DontDestroyOnLoad(this);
-
-        interactionAction = playerControls.FindActionMap("Player").FindAction("Interact");
-    }
-    private void OnEnable()
-    {
-        interactionAction.Enable();
-    }
-    private void OnDisable()
-    {
-        interactionAction.Disable();
     }
     void Update()
     {
@@ -40,7 +28,7 @@ public class CharacterInteraction : MonoBehaviour
     }
     private void CheckForInput()
     {
-        if (interactionAction.triggered && interactableTarget != null)
+        if (InputManager.instance.InteractInput && interactableTarget != null)
         {
             interactableTarget.Interact();
         }

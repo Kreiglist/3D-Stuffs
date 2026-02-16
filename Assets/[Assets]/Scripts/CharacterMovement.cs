@@ -1,13 +1,13 @@
+// Peeps 2 thank
+// Sasquatch B Gaming
+// Dave/Game Development
+// SpeedTutor
+// PitiIT
 using UnityEngine;
-using UnityEngine.InputSystem;
-//using UnityEngine.UI;
-
 public class CharacterMovement : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Transform transformCamera;
-    [SerializeField] private InputActionAsset playerControls;
-    //[SerializeField] private Text speedDebug;
     [Header("Speed")]
     [SerializeField] private float speedWalk = 15f;
     //[SerializeField] private float speedSprint = 8f;
@@ -17,8 +17,6 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float initialFallVelocity = -2f;
 
     private CharacterController characterController;
-    private InputAction moveAction;
-    private Vector2 moveInput;
     private bool isGrounded;
     private float verticalVelocity;
 
@@ -26,18 +24,6 @@ public class CharacterMovement : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         DontDestroyOnLoad(this);
-
-        moveAction = playerControls.FindActionMap("Player").FindAction("Move");
-        moveAction.performed += context => moveInput = context.ReadValue<Vector2>();
-        moveAction.canceled += context => moveInput = Vector2.zero;
-    }
-    private void OnEnable()
-    {
-        moveAction.Enable();
-    }
-    private void OnDisable()
-    {
-        moveAction.Disable();
     }
     void Update()
     {
@@ -47,12 +33,10 @@ public class CharacterMovement : MonoBehaviour
     }
     private void HandleMovement()
     {
-        var move = transformCamera.TransformDirection(new Vector3(moveInput.x, 0, moveInput.y)).normalized;
+        var move = transformCamera.TransformDirection(new Vector3(InputManager.instance.MoveInput.x, 0, InputManager.instance.MoveInput.y)).normalized;
         var currentSpeed = speedWalk;
         var finalMove = move * currentSpeed;
         finalMove.y = verticalVelocity;
-
-        //speedDebug.text = "Speed: " + finalMove.x.ToString();
 
         characterController.Move(finalMove * Time.deltaTime);
     }
