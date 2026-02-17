@@ -23,7 +23,6 @@ public class CharacterMovement : MonoBehaviour
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        DontDestroyOnLoad(this);
     }
     void Update()
     {

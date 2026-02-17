@@ -9,11 +9,6 @@ public class CharacterInteraction : MonoBehaviour
 
     //private CharacterController characterController;
     IInteractable interactableTarget;
-    private void Awake()
-    {
-        //characterController = GetComponent<CharacterController>();
-        DontDestroyOnLoad(this);
-    }
     void Update()
     {
         UpdateCurrentInteractable();
