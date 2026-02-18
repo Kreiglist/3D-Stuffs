@@ -1058,32 +1058,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8279952193128354608, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1331536343}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
 --- !u!224 &1331536342 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5487498648005425227, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
   m_PrefabInstance: {fileID: 1331536341}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1331536343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 681650724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b6c2da2db9374dada6761b5e35121c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem.RebindingUI::UnityEngine.InputSystem.Samples.RebindUI.RebindSaveLoad
-  actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  playerPreferenceKey: 
-  loadOnEnable: 1
-  saveOnDisable: 1
 --- !u!1 &1547919092
 GameObject:
   m_ObjectHideFlags: 0

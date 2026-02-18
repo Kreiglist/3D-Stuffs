@@ -227,17 +227,44 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             if (!ResolveActionAndBinding(out var action, out var bindingIndex))
                 return;
 
-            if (action.bindings[bindingIndex].isComposite)
-            {
-                // It's a composite. Remove overrides from part bindings.
-                for (var i = bindingIndex + 1; i < action.bindings.Count && action.bindings[i].isPartOfComposite; ++i)
-                    action.RemoveBindingOverride(i);
-            }
-            else
-            {
-                action.RemoveBindingOverride(bindingIndex);
-            }
+            ResetBinding(action, bindingIndex);
             UpdateBindingDisplay();
+        }
+
+        private void ResetBinding(InputAction action, int bindingIndex)
+        {
+            InputBinding newBinding = action.bindings[bindingIndex];
+            string oldOverridePath = newBinding.overridePath;
+
+            action.RemoveBindingOverride(bindingIndex);
+
+            foreach(InputAction otherAction in action.actionMap.actions)
+            {
+                if(otherAction == action)
+                {
+                    continue;
+                }
+                // OLD FUNC
+                if (action.bindings[bindingIndex].isComposite)
+                {
+                    // It's a composite. Remove overrides from part bindings.
+                    for (var i = bindingIndex + 1; i < action.bindings.Count && action.bindings[i].isPartOfComposite; ++i)
+                        action.RemoveBindingOverride(i);
+                }
+                else
+                {
+                    action.RemoveBindingOverride(bindingIndex);
+                }
+                // END
+                for (int i = 0; i < otherAction.bindings.Count; i++)
+                {
+                    InputBinding binding = otherAction.bindings[i];
+                    if(binding.overridePath == newBinding.path)
+                    {
+                        otherAction.ApplyBindingOverride(i, oldOverridePath);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -345,6 +372,15 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                         if (m_RebindOverlay != null)
                             m_RebindOverlay.SetActive(false);
                         m_RebindStopEvent?.Invoke(this, operation);
+
+                        if(CheckDuplicateBindings(action, bindingIndex, allCompositeParts))
+                        {
+                            action.RemoveBindingOverride(bindingIndex);
+                            CleanUp();
+                            PerformInteractiveRebind(action, bindingIndex, allCompositeParts);
+                            return;
+                        }
+
                         UpdateBindingDisplay();
                         CleanUp();
 
@@ -423,6 +459,37 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         {
             if (m_RebindInfo != null)
                 UpdateRebindInfo(Time.realtimeSinceStartupAsDouble);
+        }
+
+        private bool CheckDuplicateBindings(InputAction action, int bindingIndex, bool allCompositeParts = false)
+        {
+            InputBinding newBinding = action.bindings[bindingIndex];
+
+            foreach(InputBinding binding in action.actionMap.bindings)
+            {
+                if (binding.action == newBinding.action)
+                {
+                    continue;
+                }
+                if(binding.effectivePath == newBinding.effectivePath)
+                {
+                    return true;
+                }
+
+            }
+
+            if (allCompositeParts)
+            {
+                for(int i = 1; i < bindingIndex; i++)
+                {
+                    if(action.bindings[i].effectivePath == newBinding.overridePath)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         protected void OnEnable()
