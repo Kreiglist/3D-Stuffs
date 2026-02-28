@@ -26,14 +26,16 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// </summary>
         public void Load()
         {
-            if (!IsValidConfiguration())
-                return;
+            //if (!IsValidConfiguration())
+            //    return;
 
             var rebinds = PlayerPrefs.GetString(playerPreferenceKey);
-            if (string.IsNullOrEmpty(rebinds))
-                return; // OK, we may not have saved any binding overrides yet.
+            //if (string.IsNullOrEmpty(rebinds))
+            //    return; // OK, we may not have saved any binding overrides yet.
+            if (!string.IsNullOrEmpty(rebinds))
+                actions.LoadBindingOverridesFromJson(rebinds);
 
-            actions.LoadBindingOverridesFromJson(rebinds);
+            //actions.LoadBindingOverridesFromJson(rebinds);
         }
 
         /// <summary>
@@ -41,13 +43,12 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// </summary>
         public void Save()
         {
-            if (!IsValidConfiguration())
-                return;
+            //if (!IsValidConfiguration())
+            //    return;
 
             var rebinds = actions.SaveBindingOverridesAsJson();
             PlayerPrefs.SetString(playerPreferenceKey, rebinds);
         }
-
         private void OnEnable()
         {
             if (loadOnEnable)

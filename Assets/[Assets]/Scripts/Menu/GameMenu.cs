@@ -34,15 +34,19 @@ public class GameMenu : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && isActive)
         {
-            if (activeScene == "2. Movements")
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-            Time.timeScale = 1;
-            pauseScreen.SetActive(false);
-            isActive = false;
+            CloseMenu();
         }
+    }
+    public void CloseMenu()
+    {
+        if (activeScene == "2. Movements")
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        Time.timeScale = 1;
+        pauseScreen.SetActive(false);
+        isActive = false;
     }
     public void ReturnToMain()
     {

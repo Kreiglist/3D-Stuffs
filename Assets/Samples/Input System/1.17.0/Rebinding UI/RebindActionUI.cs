@@ -227,6 +227,17 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             if (!ResolveActionAndBinding(out var action, out var bindingIndex))
                 return;
 
+            //if (action.bindings[bindingIndex].isComposite)
+            //{
+            //    // It's a composite. Remove overrides from part bindings.
+            //    for (var i = bindingIndex + 1; i < action.bindings.Count && action.bindings[i].isPartOfComposite; ++i)
+            //        action.RemoveBindingOverride(i);
+            //}
+            //else
+            //{
+            //    action.RemoveBindingOverride(bindingIndex);
+            //}
+
             ResetBinding(action, bindingIndex);
             UpdateBindingDisplay();
         }
@@ -244,18 +255,6 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 {
                     continue;
                 }
-                // OLD FUNC
-                if (action.bindings[bindingIndex].isComposite)
-                {
-                    // It's a composite. Remove overrides from part bindings.
-                    for (var i = bindingIndex + 1; i < action.bindings.Count && action.bindings[i].isPartOfComposite; ++i)
-                        action.RemoveBindingOverride(i);
-                }
-                else
-                {
-                    action.RemoveBindingOverride(bindingIndex);
-                }
-                // END
                 for (int i = 0; i < otherAction.bindings.Count; i++)
                 {
                     InputBinding binding = otherAction.bindings[i];
@@ -271,7 +270,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// Attempts to swap associated binding of this instance with another instance.
         /// </summary>
         /// <remarks>It is expected that the other control is of a compatible type.</remarks>
-        /// <param name="other">The other instance to swap binding with.</param>
+        // <param name="other">The other instance to swap binding with.</param>
         /// <returns>true if successfully swapped, else false.</returns>
         public void SwapBinding(RebindActionUI other)
         {

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8188583529663925797}
   - component: {fileID: -5395634758212279956}
   - component: {fileID: 948932066770616238}
+  - component: {fileID: -5497249827263023084}
   m_Layer: 0
   m_Name: DecoCube
   m_TagString: Untagged
@@ -153,3 +154,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e4b3b6c9c774e42a24c24b5b29a12d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5497249827263023084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5150218509070050098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ced530184bd6a84ebe191437b0ea4f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DragAndDrop3D
