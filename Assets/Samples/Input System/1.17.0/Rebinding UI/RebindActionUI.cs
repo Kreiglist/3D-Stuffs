@@ -227,18 +227,19 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             if (!ResolveActionAndBinding(out var action, out var bindingIndex))
                 return;
 
-            //if (action.bindings[bindingIndex].isComposite)
-            //{
-            //    // It's a composite. Remove overrides from part bindings.
-            //    for (var i = bindingIndex + 1; i < action.bindings.Count && action.bindings[i].isPartOfComposite; ++i)
-            //        action.RemoveBindingOverride(i);
-            //}
-            //else
-            //{
-            //    action.RemoveBindingOverride(bindingIndex);
-            //}
-
             ResetBinding(action, bindingIndex);
+
+            if (action.bindings[bindingIndex].isComposite)
+            {
+                // It's a composite. Remove overrides from part bindings.
+                for (var i = bindingIndex + 1; i < action.bindings.Count && action.bindings[i].isPartOfComposite; ++i)
+                    action.RemoveBindingOverride(i);
+            }
+            else
+            {
+                action.RemoveBindingOverride(bindingIndex);
+            }
+
             UpdateBindingDisplay();
         }
 
@@ -248,23 +249,40 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             string oldOverridePath = newBinding.overridePath;
 
             action.RemoveBindingOverride(bindingIndex);
+            int currentIndex = -1;
 
-            foreach(InputAction otherAction in action.actionMap.actions)
+            foreach (InputAction otherAction in action.actionMap.actions)
             {
-                if(otherAction == action)
+                currentIndex++;
+                InputBinding currentBinding = action.actionMap.bindings[currentIndex];
+
+                if (otherAction == action)
                 {
-                    continue;
+                    if (newBinding.isPartOfComposite)
+                    {
+                        if (currentBinding.overridePath == newBinding.path)
+                        {
+                            otherAction.ApplyBindingOverride(currentIndex, oldOverridePath);
+                        }
+                    }
+
+                    else
+                    {
+                        continue;
+                    }
                 }
+
                 for (int i = 0; i < otherAction.bindings.Count; i++)
                 {
                     InputBinding binding = otherAction.bindings[i];
-                    if(binding.overridePath == newBinding.path)
+                    if (binding.overridePath == newBinding.path)
                     {
                         otherAction.ApplyBindingOverride(i, oldOverridePath);
                     }
                 }
             }
         }
+
 
         /// <summary>
         /// Attempts to swap associated binding of this instance with another instance.
@@ -463,15 +481,32 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         private bool CheckDuplicateBindings(InputAction action, int bindingIndex, bool allCompositeParts = false)
         {
             InputBinding newBinding = action.bindings[bindingIndex];
+            int currentIndex = -1;
 
-            foreach(InputBinding binding in action.actionMap.bindings)
+            foreach (InputBinding binding in action.actionMap.bindings)
             {
+                currentIndex++;
+
                 if (binding.action == newBinding.action)
                 {
-                    continue;
+                    if (binding.isPartOfComposite && currentIndex != bindingIndex)
+                    {
+                        if (binding.effectivePath == newBinding.effectivePath)
+                        {
+                            Debug.Log("Duplicate binding found in composite: " + newBinding.effectivePath);
+                            return true;
+                        }
+                    }
+
+                    else
+                    {
+                        continue;
+                    }
                 }
-                if(binding.effectivePath == newBinding.effectivePath)
+
+                if (binding.effectivePath == newBinding.effectivePath)
                 {
+                    Debug.Log("Duplicate binding found: " + newBinding.effectivePath);
                     return true;
                 }
 
@@ -479,10 +514,11 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
             if (allCompositeParts)
             {
-                for(int i = 1; i < bindingIndex; i++)
+                for (int i = 1; i < bindingIndex; i++)
                 {
-                    if(action.bindings[i].effectivePath == newBinding.overridePath)
+                    if (action.bindings[i].effectivePath == newBinding.overridePath)
                     {
+                        //Debug.Log("Duplicate binding found: " + newBinding.effectivePath);
                         return true;
                     }
                 }
@@ -490,6 +526,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
             return false;
         }
+
 
         protected void OnEnable()
         {
@@ -569,6 +606,14 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         [SerializeField]
         private TMPro.TextMeshProUGUI m_RebindText;
 
+        [Tooltip("Optional bool value which allows you to override action labels wth your own text")]
+        [SerializeField]
+        public bool m_OverrideActionLabel;
+
+        [Tooltip("What custom text should be displayed to override action label")]
+        [SerializeField]
+        private string m_CustomActionLabelString;
+
         [Tooltip("Optional text label that will be updated with relevant information during rebinding.")]
         [SerializeField]
         private TMPro.TextMeshProUGUI m_RebindInfo;
@@ -619,7 +664,16 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             if (m_ActionLabel != null)
             {
                 var action = m_Action?.action;
-                m_ActionLabel.text = action != null ? action.name : string.Empty;
+
+                if (m_OverrideActionLabel)
+                {
+                    m_ActionLabel.text = m_CustomActionLabelString;
+                }
+                else
+                {
+                    m_ActionLabel.text = action != null ? action.name : string.Empty;
+                    m_CustomActionLabelString = String.Empty;
+                }
             }
         }
 

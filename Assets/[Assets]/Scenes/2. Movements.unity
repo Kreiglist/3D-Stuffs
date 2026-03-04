@@ -907,7 +907,7 @@ PrefabInstance:
       objectReference: {fileID: 1981568646}
     - target: {fileID: 1316471364679145657, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
       propertyPath: m_text
-      value: Move
+      value: Left
       objectReference: {fileID: 0}
     - target: {fileID: 1517901632484624451, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
       propertyPath: m_AnchorMax.y
@@ -935,7 +935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1748646764309861029, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
       propertyPath: m_text
-      value: Move
+      value: Right
       objectReference: {fileID: 0}
     - target: {fileID: 2620210848416672099, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
       propertyPath: m_text
@@ -945,6 +945,14 @@ PrefabInstance:
       propertyPath: m_Action
       value: 
       objectReference: {fileID: 197675998}
+    - target: {fileID: 2780533140840162108, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
+      propertyPath: m_OverrideActionLabel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2780533140840162108, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
+      propertyPath: m_CustomActionLabelString
+      value: Left
+      objectReference: {fileID: 0}
     - target: {fileID: 2780533140840162111, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -973,6 +981,14 @@ PrefabInstance:
       propertyPath: m_Action
       value: 
       objectReference: {fileID: 197675998}
+    - target: {fileID: 3213049385307171104, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
+      propertyPath: m_OverrideActionLabel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213049385307171104, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
+      propertyPath: m_CustomActionLabelString
+      value: Right
+      objectReference: {fileID: 0}
     - target: {fileID: 3213049385307171107, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1059,7 +1075,7 @@ PrefabInstance:
       objectReference: {fileID: 1748305535}
     - target: {fileID: 4804860819947762230, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
       propertyPath: m_text
-      value: Move
+      value: Forward
       objectReference: {fileID: 0}
     - target: {fileID: 5015901057506527399, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1093,6 +1109,14 @@ PrefabInstance:
       propertyPath: m_Action
       value: 
       objectReference: {fileID: 197675998}
+    - target: {fileID: 5438482526090911570, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
+      propertyPath: m_OverrideActionLabel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438482526090911570, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
+      propertyPath: m_CustomActionLabelString
+      value: Backward
+      objectReference: {fileID: 0}
     - target: {fileID: 5474242570334766532, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1250,12 +1274,20 @@ PrefabInstance:
       value: e2062cb9-1b15-46a2-838c-2f8d72a0bdd9
       objectReference: {fileID: 0}
     - target: {fileID: 8538034235942603187, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
+      propertyPath: m_OverrideActionLabel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538034235942603187, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
       propertyPath: m_DisplayStringOptions
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8538034235942603187, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
+      propertyPath: m_CustomActionLabelString
+      value: Forward
+      objectReference: {fileID: 0}
     - target: {fileID: 9199205427827926231, guid: bcd805b8b4d7b924888b2ffe03ab4f49, type: 3}
       propertyPath: m_text
-      value: Move
+      value: Backward
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
