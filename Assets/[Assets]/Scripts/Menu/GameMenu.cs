@@ -11,8 +11,9 @@ public class GameMenu : MonoBehaviour
     {
         activeScene = SceneManager.GetActiveScene().name;
         print(activeScene);
-        pauseScreen.SetActive(false);
-        isActive = false;
+        CloseMenu();
+        //pauseScreen.SetActive(false);
+        //isActive = false;
     }
     private void Update()
     {

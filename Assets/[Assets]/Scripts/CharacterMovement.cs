@@ -13,7 +13,7 @@ public class CharacterMovement : MonoBehaviour
     //[SerializeField] private float speedSprint = 8f;
     //[SerializeField] private float speedCrouch = 3f;
     [Header("Gravity")]
-    [SerializeField] private float gravity = -9.8f;
+    [SerializeField] private float gravity = -12f;
     [SerializeField] private float initialFallVelocity = -2f;
 
     private CharacterController characterController;
@@ -45,6 +45,6 @@ public class CharacterMovement : MonoBehaviour
         {
             verticalVelocity = initialFallVelocity;
         }
-        verticalVelocity = gravity * Time.deltaTime;
+        verticalVelocity += gravity * Time.deltaTime;
     }
 }
